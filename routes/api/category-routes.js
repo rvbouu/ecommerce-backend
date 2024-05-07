@@ -8,8 +8,7 @@ router.get('/', async (req, res) => {
   try {
     const catData = await Category.findAll({
       include: {
-        model: Product,
-        attributes: ['product_name']
+        model: Product
       }
     });
     res.status(200).json({ status: `success`, result: catData });
@@ -25,8 +24,7 @@ router.get('/:id', async (req, res) => {
   try {
     const catData = await Category.findByPk(req.params.id, {
       include: {
-        model: Product,
-        attributes: ['category_id']
+        model: Product
       }
     });
     if (!catData) {
@@ -87,7 +85,7 @@ router.delete('/:id', async (req, res) => {
     res.status(200).json({ status: `success`, message: `Category has been deleted` });
   }
   catch (err) {
-    res.status(400).json({status: `error`, message: err})
+    res.status(400).json({ status: `error`, message: err })
   }
 });
 
